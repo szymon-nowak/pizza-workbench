@@ -1,6 +1,5 @@
-//
+
 // pizzaWorkbench 1.0.0
-//
 
 
 $fn = 50; // number of fragments (special scad variable)
@@ -10,8 +9,8 @@ $fn = 50; // number of fragments (special scad variable)
 boardHeight = 19;
 boardDepth  = 620;
 
-workspaceWidth = 1100;
-workspaceDepth = 415;
+countertopWidth = 1100;
+countertopDepth = 415;
 
 drawerHeight = 160;
 
@@ -32,21 +31,21 @@ cBeech = [ 0.96, 0.87, 0.68, transparency ]; // beech wood
 cWhite = [ 0.99, 0.99, 0.99, transparency ];
 cRed   = [ 1.0, 0.0, 0.0, transparency ];
 
-workbenchWidth = workspaceWidth;
+workbenchWidth = countertopWidth;
 workbenchDepth = boardDepth + boardHeight;
 
 
 translate([ -workbenchWidth/2, -workbenchDepth/2, -boardHeight ]) {
 
     // 300mm (~12 inches) pizza
-    color( cRed ) translate([ workspaceWidth/2, workspaceDepth/2, boardHeight ]) cylinder( h = 10, d = 300, center = false );
+    color( cRed ) translate([ countertopWidth/2, countertopDepth/2, boardHeight ]) cylinder( h = 10, d = 300, center = false );
 
     // workspace (top)
-    color( cBeech ) cube([ workspaceWidth, boardDepth, boardHeight ]);
+    color( cBeech ) cube([ countertopWidth, boardDepth, boardHeight ]);
 
     // base (bottom)
     baseDepth = boardDepth - boardHeight - 1;
-    color( cBeech ) translate([ 0, boardHeight + 1, -drawerHeight ]) cube([ workspaceWidth, baseDepth, boardHeight ]);
+    color( cBeech ) translate([ 0, boardHeight + 1, -drawerHeight ]) cube([ countertopWidth, baseDepth, boardHeight ]);
 
     // back
     backHeight = 310;
@@ -66,11 +65,11 @@ translate([ -workbenchWidth/2, -workbenchDepth/2, -boardHeight ]) {
     color( cBeech, 0.9 ) translate([ -boardHeight, 0, -drawerHeight ]) polyhedron( leftSidePoints, leftSideFaces );
 
     // containers front
-    color( cBeech ) translate([ 0, workspaceDepth, boardHeight ]) cube([ workbenchWidth, boardHeight, 100 ]);
+    color( cBeech ) translate([ 0, countertopDepth, boardHeight ]) cube([ workbenchWidth, boardHeight, 100 ]);
 
     // containers
     for ( container = containers ) {
-        translate([ container[1], workspaceDepth + 35, boardHeight + 25 ]) rotate([ 10, 0, 0 ]) GNContainer( container[0], cSteel );
+        translate([ container[1], countertopDepth + 35, boardHeight + 25 ]) rotate([ 10, 0, 0 ]) GNContainer( container[0], cSteel );
     }
     
     // right drawer (for dough tray)
